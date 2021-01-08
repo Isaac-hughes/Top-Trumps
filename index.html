@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="body">
+    <span id="firstScreen">
+        <div class="firstScreen">
+            <h1 class="title">Harry Potter Top Trumps</h1>
+            <h2 class="info">You will be dealt 15 cards, you will take it in turns to select a card and pick a stat then we'll find out who comes out on top!</h2>
+            <button class="playButton">Let's Play</button>
+        </div>
+    </span>
+    <span id="cardScreen">
+        <div class="cardScreen">
+            <div class="scoreBoard"><h2 class="playerScoreBoard"></h2><h2 class="computerScoreBoard"></h2></div>
+            <h1 class="title">Your card</h1>
+            <div class="cardPreviewer">
+                <div class="card">
+                    <img src="" class="image">
+                    <button class="name" id="nameButton">name : Dumble Door</button>
+                    <button class="magic" id="magicButton">Magic : 100</button>
+                    <button class="cunning" id="cunningButton">Cunning : 200</button>
+                    <button class="courage" id="courageButton">Courage : 400</button>
+                    <button class="wisdom" id="wisdomButton">Wisdom : 783</button>
+                    <button class="temper" id="temperButton">Temper: 999</button>
+                </div>
+            </div>
+            <h1 class="turnDisplay"></h1>
+        </div>
+    </span>
+    <span id="playScreen">
+        <div class="playScreen">
+            <div class="topText">
+                <h2 class="announcer"></h2>
+            </div>
+            <div class="battleCards">
+                <div class="playerCard">
+                    <div class="card">
+                        <img src="" class="image">
+                        <p class="name pname">name : Dumble Door</p>
+                        <p class="magic pmagic">Magic : 100</p>
+                        <p class="cunning pcunning">Cunning : 200</p>
+                        <p class="courage pcourage">Courage : 400</p>
+                        <p class="wisdom pwisdom">Wisdom : 783</p>
+                        <p class="temper ptemper">Temper: 999</p>
+                    </div>
+                </div>
+                <div class="computerCard">
+                    <div class="card">
+                        <img src="" class="image">
+                        <p class="name cname">name : Dumble Door</p>
+                        <p class="magic cmagic">Magic : 100</p>
+                        <p class="cunning ccunning">Cunning : 200</p>
+                        <p class="courage ccourage">Courage : 400</p>
+                        <p class="wisdom cwisdom">Wisdom : 783</p>
+                        <p class="temper ctemper">Temper: 999</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bottomText">
+                <button class="nextRound">Next Round</button>
+            </div>
+        </div>
+    </span>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
