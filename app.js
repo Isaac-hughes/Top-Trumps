@@ -15,14 +15,14 @@ const cardWisdom = document.getElementsByClassName('wisdom')
 const cardTemper = document.getElementsByClassName('temper')
 const playerName = document.getElementsByClassName('pname')
 const playerMagic = document.getElementsByClassName('pmagic')
-const playerCunning = document.getElementsByClassName('pcourage')
-const playerCourage = document.getElementsByClassName('pcunning')
+const playerCunning = document.getElementsByClassName('pcunning')
+const playerCourage = document.getElementsByClassName('pcourage')
 const playerWisdom = document.getElementsByClassName('pwisdom')
 const playerTemper = document.getElementsByClassName('ptemper')
 const computerName = document.getElementsByClassName('cname')
 const computerMagic = document.getElementsByClassName('cmagic')
-const computerCunning = document.getElementsByClassName('ccourage')
-const computerCourage = document.getElementsByClassName('ccunning')
+const computerCunning = document.getElementsByClassName('ccunning')
+const computerCourage = document.getElementsByClassName('ccourage')
 const computerWisdom = document.getElementsByClassName('cwisdom')
 const computerTemper = document.getElementsByClassName('ctemper')
 const nextRoundButton = document.getElementsByClassName('nextRound')[0]
@@ -89,6 +89,7 @@ let playerCards = []
 let computerCards = []
 let currentPlayerCard = []
 let currentComputerCard = []
+let oldComputerCard = []
 let winnerArray = []
 let whosTurn = ""
 
@@ -136,7 +137,7 @@ const giveComputerCard = () => {
     cardsInDeck--
 }
 
-const playToptrumps = () => {
+const playTopTrumps = () => {
     updateScoreBoard()
     getCurrentComputerCard()
     getCurrentPlayerCard()
@@ -145,13 +146,19 @@ const playToptrumps = () => {
         playerTurnEventListener()
         
 
-        changeTurn()
+        
     } else if (whosTurn === "Computer"){
         turnDisplay[0].innerHTML = "Computer Turn!"
         computerTurn()
         setTimeout(function(){cardScreen.remove()}, 2000)
+
+
+        console.log(oldComputerCard)
+        console.log(currentComputerCard)
+
+
         battle()
-        changeTurn()
+        
     }
 }
 
@@ -244,10 +251,10 @@ const temperListener = () => {
 
 const removeListeners = () => {
     magicButton.removeEventListener('click', magicListener)
-    // cardCunning.removeEventListener('click', cunningListener())
-    // cardCourage.removeEventListener('click', courageListener())
-    // cardWisdom.removeEventListener('click', wisdomListener())
-    // cardTemper.removeEventListener('click', temperListener())
+    cunningButton.removeEventListener('click', cunningListener)
+    courageButton.removeEventListener('click', courageListener)
+    wisdomButton.removeEventListener('click', wisdomListener)
+    temperButton.removeEventListener('click', temperListener)
 }
 
 const computerTurn = () => {
@@ -279,16 +286,25 @@ const computerBiggestStat = () => {
 }
 const battle = () => {
     if(computerSelectionNumber < playerSelectionNumber){
+        console.log(computerSelectionNumber)
+        console.log(playerSelectionNumber)
         playerScore++
         winnerArray.push(currentPlayerCard)
         winnerArray.push(currentComputerCard)
         updateAnnouncer("Player", whosTurn, choice)
+
+
+        oldComputerCard = currentComputerCard
+
+
         currentComputerCard = []
         currentPlayerCard = []
         playerCards.push(winnerArray[0])
         playerCards.push(winnerArray[1])
         winnerArray = []
     } else if (computerSelectionNumber > playerSelectionNumber){
+        console.log(computerSelectionNumber)
+        console.log(playerSelectionNumber)
         computerScore++
         winnerArray.push(currentPlayerCard)
         winnerArray.push(currentComputerCard)
@@ -299,6 +315,8 @@ const battle = () => {
         computerCards.push(winnerArray[1])
         winnerArray = []
     } else if (computerSelectionNumber === playerSelectionNumber){
+        console.log(computerSelectionNumber)
+        console.log(playerSelectionNumber)
         announcer[0].innerHTML = `${whosTurn} chose ${choice}, It was a draw`
         playerCards.push(currentPlayerCard)
         computerCards.push(currentComputerCard)
@@ -307,6 +325,7 @@ const battle = () => {
     } else {
         console.log("error")
     }
+    changeTurn()
 }
 
 const gameOver = () => {
@@ -340,9 +359,9 @@ const updateAnnouncer = (winner, chooser, condition) => {
 }
 
 const changeTurn = ()=> {
-    if (whosTurn = "Player"){
+    if (whosTurn === "Player"){
         whosTurn = "Computer"
-    } else if (whosTurn = "Computer"){
+    } else if (whosTurn === "Computer"){
         whosTurn = "Player"
     }
 }
@@ -351,11 +370,11 @@ playButton.addEventListener('click', () => {
     firstScreen.remove();
     splitCards()
     whosTurn = "Player"
-    playToptrumps()
+    playTopTrumps()
 })
 
 nextRoundButton.addEventListener('click', () => {
     playScreen.before(cardScreen)
     gameOver()
-    playToptrumps()
+    playTopTrumps()
 })
